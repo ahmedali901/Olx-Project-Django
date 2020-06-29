@@ -9,9 +9,9 @@ class Ad(models.Model):
     created_at = models.DateField(auto_now=True)
     updated_at = models.DateField(auto_now_add=True)
     image = models.ImageField(upload_to='ad/')
-    Content = models.TextField(max_length=1000)
+    content = models.TextField(blank=True, null=True)
     price = models.IntegerField(default=1)
-    category = models.ForeignKey('Category', related_name='ad_category', on_delete=models.CASCADE)
+    category = models.ForeignKey('Category', limit_choices_to={'main_category':True}, related_name='ad_category', on_delete=models.CASCADE)
    
    
     def save(self, *args, **kwargs):
@@ -34,7 +34,7 @@ class AdImages(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=50,)
-    main_category = models.ForeignKey('self', related_name='maincategory', on_delete=models.CASCADE, blank=True, null=True)
+    main_category = models.ForeignKey('self', limit_choices_to={'main_category':None}, related_name='maincategory', on_delete=models.CASCADE, blank=True, null=True)
 
 
     def __str__(self):

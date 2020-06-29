@@ -19,6 +19,7 @@ class Post(models.Model):  # db table
     image = models.ImageField(upload_to='post/')
     active = models.BooleanField(default=False)
 
+
     def save(self, *args, **kwargs):
         #logic
         self.post_slug = slugify(self.title)

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'contact',
     'ad',
     'accounts',
+    'bootstrap4',
 
 ]
 
